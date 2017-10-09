@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import YTSearch from 'youtube-api-search';
+
+const API_KEY = 'AIzaSyAOWE6IgAOOkBz9PdEknVoj2whAY6okVMw';
 
 class Search extends Component {
   constructor(props) {
@@ -7,6 +10,12 @@ class Search extends Component {
       searchTerm: ''
     };
   }
+
+componentDidMount(){
+  YTSearch({key: API_KEY, term: 'Хованский'}, (data) => {
+    console.log(data);
+  });
+}
 
 handleInputChange(key, event) {
   this.setState({[key]: event.target.value});
