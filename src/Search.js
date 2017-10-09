@@ -4,23 +4,24 @@ class Search extends Component {
   constructor(props) {
     super();
     this.state = {
-      count: 1
+      searchTerm: ''
     };
   }
 
-handleIncreaseCounter() {
-  let { count } = this.state;//Диструктирізація
-  // let counter = this.state.counter;
-  ++count;
-  this.setState({count});
+handleInputChange(key, event) {
+  this.setState({[key]: event.target.value});
 }
 
   render() {
+    const { searchTerm } = this.state;
     return (
       <div>
-      <p>{this.state.count}</p>
-      <button onClick={this.handleIncreaseCounter.bind(this)}>УВЕЛИЧИТЬ</button>
-      <input placeholder="Text here..." />
+      <p>{searchTerm} </p>
+      <input 
+      placeholder="Text here..."
+      value={searchTerm}
+      onChange={this.handleInputChange.bind(this, 'searchTerm')}
+       />
       </div>
     );
   }
