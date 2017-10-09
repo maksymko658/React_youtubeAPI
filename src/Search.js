@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import App from './App';
 class Search extends Component {
   render() {
     const { onInptChange, onBtnClick, searchTerm } = this.props;

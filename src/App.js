@@ -25,17 +25,24 @@ handleInputChange(key, event) {
 }
 
   render() {
-    const { searchTerm } = this.state;
-
-    console.log(this.state.videos);
+    const { searchTerm, video } = this.state;
 
     return (
       <div>
       <Search 
       onInptChange={this.handleInputChange.bind(this, 'searchTerm')}
       onBtnClick={this.handleGetVideos.bind(this, searchTerm)}
-      value={searchTerm}
-      />
+      value={searchTerm}/>
+
+      {videos.map((video, index) => {
+        return (
+          <div key={index}>
+          <h3>{video.snippet.title}</h3>
+          <img scr={video.snippet.thumbnails.medium.url} width="250" heigth="150" alt="sasa" />
+          <p>{video.snippet.description} </p>
+          </div>
+          );
+      })}
       </div>
     );
   }
