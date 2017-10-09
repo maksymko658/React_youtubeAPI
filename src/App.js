@@ -25,8 +25,8 @@ handleInputChange(key, event) {
 }
 
   render() {
-    const { searchTerm, video } = this.state;
-
+    const { searchTerm, videos } = this.state;
+ console.log(videos);
     return (
       <div>
       <Search 
@@ -38,7 +38,7 @@ handleInputChange(key, event) {
         return (
           <div key={index}>
           <h3>{video.snippet.title}</h3>
-          <img scr={video.snippet.thumbnails.medium.url} width="250" heigth="150" alt="sasa" />
+          <img src={video.snippet.thumbnails.medium.url} />
           <p>{video.snippet.description} </p>
           </div>
           );
