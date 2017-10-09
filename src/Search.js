@@ -11,11 +11,12 @@ class Search extends Component {
     };
   }
 
-componentDidMount(){
-  YTSearch({key: API_KEY, term: 'Хованский'}, (data) => {
+  handleGetVideos(searchTerm){
+    YTSearch({key: API_KEY, term: searchTerm}, (data) => {
     console.log(data);
   });
-}
+  }
+
 
 handleInputChange(key, event) {
   this.setState({[key]: event.target.value});
@@ -23,14 +24,18 @@ handleInputChange(key, event) {
 
   render() {
     const { searchTerm } = this.state;
+
     return (
       <div>
       <p>{searchTerm} </p>
+
       <input 
       placeholder="Text here..."
       value={searchTerm}
       onChange={this.handleInputChange.bind(this, 'searchTerm')}
        />
+
+       <button onClick={this.handleGetVideos.bind(this, searchTerm)}>Search</button>
       </div>
     );
   }
