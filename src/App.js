@@ -44,27 +44,25 @@ handleSelectVideo(videoUrl){
 
     return (
       <div className="p3">
-      <Search 
-      onInptChange={this.handleInputChange.bind(this, 'searchTerm')}
-      onBtnClick={this.handleGetVideos.bind(this, searchTerm)}
-      value={searchTerm}/>
-
+        <Search 
+          onInptChange={this.handleInputChange.bind(this, 'searchTerm')}
+            onBtnClick={this.handleGetVideos.bind(this, searchTerm)}
+              value={searchTerm}/>
 
       <div className="clearfix">
         {body}
-              <div className="col col-4">
-
-      {videos.map((video, index) => {
+          <div className="col col-4">
+  {videos.map((video, index) => {
         const videoUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
 
         return (
           <div onClick={this.handleSelectVideo.bind(this, videoUrl)} key={index}>
-          <h3>{video.snippet.title}</h3>
-          <img src={video.snippet.thumbnails.medium.url} />
-          <p>{video.snippet.description} </p>
+            <h3>{video.snippet.title}</h3>
+              <img src={video.snippet.thumbnails.medium.url} />
+                <p>{video.snippet.description} </p>
           </div>
           );
-      })}         
+        })}         
       </div>
     </div>
   </div>
