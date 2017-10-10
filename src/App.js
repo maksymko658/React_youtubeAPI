@@ -9,7 +9,8 @@ class App extends Component {
 
     this.state = {
       searchTerm: '',
-      videos: []
+      videos: [],
+      selectedVideo: null
     };
   }
   //youtubeAPI
@@ -23,27 +24,41 @@ handleGetVideos(searchTerm){
 handleInputChange(key, event) {
   this.setState({[key]: event.target.value});
 }
+  
+handleSelectVideo(videoUrl){
+  this.setState({selectedVideo: videoUrl})
+}
 
   render() {
-    const { searchTerm, videos } = this.state;
+    const { searchTerm, videos, selectedVideo } = this.state;
  console.log(videos);
     return (
-      <div>
+      <div className="p3">
       <Search 
       onInptChange={this.handleInputChange.bind(this, 'searchTerm')}
       onBtnClick={this.handleGetVideos.bind(this, searchTerm)}
       value={searchTerm}/>
 
+
+      <div className="clearfix">
+        {selectedVideo ? (<div className="col col-7 py2">
+        <iframe width="560" height="315" src={selectedVideo} frameborder="0" allowfullscreen></iframe></div>) : null}
+              <div className="col col-4">
+
       {videos.map((video, index) => {
+        const videoUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
+
         return (
-          <div key={index}>
+          <div onClick={this.handleSelectVideo.bind(this, videoUrl)} key={index}>
           <h3>{video.snippet.title}</h3>
           <img src={video.snippet.thumbnails.medium.url} />
           <p>{video.snippet.description} </p>
           </div>
           );
-      })}
+      })}         
       </div>
+    </div>
+  </div>
     );
   }
 }
