@@ -17,6 +17,11 @@ class App extends Component {
 handleGetVideos(searchTerm){
     YTSearch({key: API_KEY, term: searchTerm}, (data) => {
     this.setState({videos: data});
+    const video = data[0];
+    const videoUrl = `https://www.youtube.com/embed/${video.id.videoId}`;
+
+    this.handleSelectVideo(videoUrl);
+
   });
 }
 
@@ -31,7 +36,8 @@ handleSelectVideo(videoUrl){
 
   render() {
     const { searchTerm, videos, selectedVideo } = this.state;
- console.log(videos);
+
+
     return (
       <div className="p3">
       <Search 
@@ -41,7 +47,7 @@ handleSelectVideo(videoUrl){
 
 
       <div className="clearfix">
-        {selectedVideo ? (<div className="col col-7 py2">
+        {selectedVideo ? (<div className="col col-6 py2">
         <iframe width="560" height="315" src={selectedVideo} frameborder="0" allowfullscreen></iframe></div>) : null}
               <div className="col col-4">
 
