@@ -14,7 +14,9 @@ class App extends Component {
     };
   }
   //youtubeAPI
-handleGetVideos(searchTerm){
+handleGetVideos(searchTerm, event){
+  event.preventDefault();
+
     YTSearch({key: API_KEY, term: searchTerm}, (data) => {
     this.setState({videos: data});
     const video = data[0];

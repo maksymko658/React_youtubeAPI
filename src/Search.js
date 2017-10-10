@@ -5,15 +5,15 @@ class Search extends Component {
     const { onInptChange, onBtnClick, searchTerm } = this.props;
 
     return (
-      <div>
+      <form onSubmit={onBtnClick}>
       <input
         placeholder="text here..."
         value={searchTerm}
         onChange={onInptChange}
       />
 
-      <button onClick={onBtnClick}>Click</button>
-      </div>
+      <button type="submit">Click</button>
+      </form>
     );
   }
 }
