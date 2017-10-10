@@ -38,6 +38,8 @@ handleSelectVideo(videoUrl){
 
   render() {
     const { searchTerm, videos, selectedVideo } = this.state;
+    const body = {selectedVideo} ? (<div className="col col-6 py2">
+        <iframe width="560" height="315" src={selectedVideo} frameborder="0" allowfullscreen></iframe></div>) : null
 
 
     return (
@@ -49,8 +51,7 @@ handleSelectVideo(videoUrl){
 
 
       <div className="clearfix">
-        {selectedVideo ? (<div className="col col-6 py2">
-        <iframe width="560" height="315" src={selectedVideo} frameborder="0" allowfullscreen></iframe></div>) : null}
+        {body}
               <div className="col col-4">
 
       {videos.map((video, index) => {
